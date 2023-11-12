@@ -1,13 +1,11 @@
-import pandas as pd
-
+import random
 
 def gen_random_word(filename):
-    data = pd.read_csv(filename, header=None)
-    word = data.sample()
-    word = word.values[0]
-    word = ''.join(word)
+    with open(filename) as f:
+        data = f.read().splitlines()
+    random_number = random.randint(1, len(data))
+    word = data[random_number]
     return word
-
 
 def generate_guess_template():
     random_word = gen_random_word('data.txt')
